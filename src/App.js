@@ -4,22 +4,25 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
+    this.countLetters = this.countLetters.bind(this)
     this.state = {
+      text: '',
       count: 0
     };
   };
   render() {
     return (
       <div className="container">
-        <textarea rows="3" onChange={this.countLetters.bind(this)}></textarea>
+        <textarea rows="3" onChange={this.countLetters.bind(this)}>{this.state.text}</textarea>
         <div className="counter">{this.state.count}</div>
       </div>
     );
   };
 
-  countLetters() {
+  countLetters(event) {
     this.setState({
-      count: this.state.count + 1
+      text: event.target.value,
+      count: event.target.value.length
     });
   }
 }
